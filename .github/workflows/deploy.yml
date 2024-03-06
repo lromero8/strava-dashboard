@@ -7,7 +7,7 @@ on:
 jobs:
   build_site:
     env: # Or as an environment variable
-      STRAVA_KEY: ${{ secrets.GITHUB_TOKEN }}
+      STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.STRAVA_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -57,5 +57,3 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-        with: # Set the secret as an input
-          STRAVA_KEY: ${{ secrets.GITHUB_TOKEN }}
