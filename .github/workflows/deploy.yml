@@ -7,7 +7,7 @@ on:
 jobs:
   build_site:
     env: # Or as an environment variable
-      VITE_STRAVA_KEY: ${{ secrets.GITHUB_TOKEN }}
+      VITE_STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.VITE_STRAVA_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
-          STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.VITE_STRAVA_KEY }}
+          VITE_STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.VITE_STRAVA_KEY }}
         run: |
           npm run build
 
