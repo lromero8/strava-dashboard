@@ -57,9 +57,9 @@ jobs:
         uses: actions/deploy-pages@v4
         # uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.STRAVA_KEY }}
-          BRANCH: gh-pages
-          FOLDER: ./build
+          token: ${{ secrets.GITHUB_TOKEN.STRAVA_KEY }}
+          # BRANCH: gh-pages
+          # FOLDER: ./build
 
       - name: Set Environment Variables
         run: |
