@@ -63,5 +63,4 @@ jobs:
 
       - name: Set Environment Variables
         run: |
-          mkdir -p ./build
           echo "export const STRAVA_KEY = '${{ secrets.GITHUB_TOKEN.STRAVA_KEY }}';" > ./build/env.js
