@@ -6,6 +6,8 @@ on:
 
 jobs:
   build_site:
+    env: # Or as an environment variable
+      STRAVA_KEY: ${{ secrets.STRAVA_KEY }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
