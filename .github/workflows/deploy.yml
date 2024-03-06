@@ -57,3 +57,5 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with: # Set the secret as an input
+          STRAVA_KEY: ${{ secrets.GITHUB_TOKEN }}
