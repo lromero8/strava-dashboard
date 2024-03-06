@@ -11,7 +11,6 @@
     function fetchActivities() {
         // const json = load();
         // console.log(json);
-        activitiesStore.subscribe(console.log);
         console.log(data);
         // unsubscribe = activitiesStore.subscribe(activities => {
         //     console.log(activities)    
