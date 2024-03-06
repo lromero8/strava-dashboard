@@ -31,7 +31,7 @@ jobs:
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
-          # STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.VITE_STRAVA_KEY }}
+          STRAVA_KEY: ${{ secrets.GITHUB_TOKEN.VITE_STRAVA_KEY }}
         run: |
           npm run build
 
