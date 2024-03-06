@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { VITE_STRAVA_KEY } from '$env/static/private';
 
 interface Stats {
     recent_run_totals: string,
@@ -22,7 +22,7 @@ interface Stats {
 }
 export async function load() {
     try {
-        const key = env.STRAVA_KEY;
+        const key = VITE_STRAVA_KEY;
         const response = await fetch('https://strava.com/api/v3/athletes/17975433/activities?access_token=' + key);
         const json = await response.json();
         return {  data: json };
