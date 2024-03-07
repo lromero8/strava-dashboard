@@ -50,8 +50,8 @@ export async function load() {
         console.log(reAuthJson);
 
         const response = await fetch('https://www.strava.com/api/v3/athlete/activities?access_token=' + reAuthJson.access_token);
-        const json = await response.json();
-        return { data: json };
+        const activities = await response.json();
+        return { activities };
 
     } catch (error) {
         console.log(error);
