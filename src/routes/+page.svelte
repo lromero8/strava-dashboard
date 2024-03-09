@@ -1,16 +1,13 @@
-<script lang="ts">
-    import { onMount } from "svelte";
-    import { activitiesStore } from "../stores/store";
-    import type { Activity } from "$lib/activity";
+<script lang='ts'>
+    import { onMount } from 'svelte';
+    import { activitiesStore } from '../stores/store';
+    import Menu from '$lib/menu/+page.svelte';
+
 
     export let data;
 
-    let activities: Activity[]|undefined;
-
     function setStore() {
         if (data.activities) {
-            activities = data.activities;
-            console.log(activities);
             activitiesStore.set(data.activities);
         }
     }
@@ -22,7 +19,7 @@
 
 <h1>Welcome to FitFiesta 🎉</h1>
 
-
+<Menu />
 
 <div>
     <span>Ideas 💡</span>
@@ -71,8 +68,5 @@
             <li>Days left for event</li>
         </ul>
     </ul>
-    {#if activities?.length}
-        <p>Last activity: {activities[0].distance / 1000} km</p>
-    {/if}
 </div>
 
