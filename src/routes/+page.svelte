@@ -10,6 +10,7 @@
     function setStore() {
         if (data.activities) {
             activities = data.activities;
+            console.log(activities);
             activitiesStore.set(data.activities);
         }
     }
@@ -19,55 +20,59 @@
 
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<span>Ideas</span>
-<ul>
+<h1>Welcome to FitFiesta 🎉</h1>
 
-    <li>Menu home page with three links: Run, bike, swim</li>
+
+
+<div>
+    <span>Ideas 💡</span>
     <ul>
-        <li>Run: show last run ring</li>
-        <li>Bike: show last bike ring</li>
-        <li>Swim: show last swim ring</li>
-        <li>Filter by day, week, month</li>
+    
+        <li>Menu home page with three links: Run, bike, swim</li>
+        <ul>
+            <li>Run: show last run ring</li>
+            <li>Bike: show last bike ring</li>
+            <li>Swim: show last swim ring</li>
+            <li>Filter by day, week, month</li>
+        </ul>
+    
+        <li>Show last activity ring</li>
+        <ul>
+            <li>If run show: run icon, distance, time</li>
+            <li>If bike show: bike icon, distance, time</li>
+            <li>If swim show: swim icon, distance, time</li>
+            <li>Show run kudos count</li>
+        </ul>
+    
+        <li>Show commutes</li>
+        <ul>
+            <li>Show total distance per week and month</li>
+            <li>Show total carbon saved per week and month</li>
+        </ul>
+    
+        <li>Show beers earned</li>
+        <ul>
+            <li>Per run</li>
+            <li>Per month</li>
+            <li>Per week</li>
+        </ul>
+    
+        <li>Show calendar of active days</li>
+    
+        <li>Add Goals</li>
+        <ul>
+            <li>Show goals completion rings</li>
+            <li>Show days left for goal</li>
+        </ul>
+    
+        <li>Add events</li>
+        <ul>
+            <li>Show event details</li>
+            <li>Days left for event</li>
+        </ul>
     </ul>
-
-    <li>Show last activity ring</li>
-    <ul>
-        <li>If run show: run icon, distance, time</li>
-        <li>If bike show: bike icon, distance, time</li>
-        <li>If swim show: swim icon, distance, time</li>
-        <li>Show run kudos count</li>
-    </ul>
-
-    <li>Show commutes</li>
-    <ul>
-        <li>Show total distance per week and month</li>
-        <li>Show total carbon saved per week and month</li>
-    </ul>
-
-    <li>Show beers earned</li>
-    <ul>
-        <li>Per run</li>
-        <li>Per month</li>
-        <li>Per week</li>
-    </ul>
-
-    <li>Show calendar of active days</li>
-
-    <li>Add Goals</li>
-    <ul>
-        <li>Show goals completion rings</li>
-        <li>Show days left for goal</li>
-    </ul>
-
-    <li>Add events</li>
-    <ul>
-        <li>Show event details</li>
-        <li>Days left for event</li>
-    </ul>
-</ul>
-{#if activities?.length}
-    <p>Last activity: {activities[0].distance / 1000} km</p>
-{/if}
+    {#if activities?.length}
+        <p>Last activity: {activities[0].distance / 1000} km</p>
+    {/if}
+</div>
 
