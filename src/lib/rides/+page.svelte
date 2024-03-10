@@ -1,7 +1,7 @@
 <script lang='ts'>
     import type { Activity } from '$lib/activity';
 
-      export let rides: Activity[]|undefined;
+    export let rides: Activity[]|undefined;
 
 </script>
 
