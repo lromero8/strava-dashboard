@@ -1,10 +1,18 @@
 <script lang='ts'>
     import type { Activity } from '$lib/activity';
+    import Ring from '$lib/ring/+page.svelte';
 
     export let runs: Activity[]|undefined;
+
+    let lastRun = '';
+    if (runs?.length) {
+        lastRun = (runs[0].distance / 1000).toPrecision(3);
+    }
 
 </script>
 
 {#if runs?.length}
-    <p>Last run: {runs[0].distance / 1000} km</p>
+    <p>Last run: {lastRun} km</p>
+    <Ring activityProperty='Distance' activityValue={`${lastRun} km`}  percentageAchieved={100} />
+
 {/if}
