@@ -1,3 +1,4 @@
+import type { Activity } from '$lib/activity';
 import { writable } from 'svelte/store';
 
-export const activitiesStore = writable();
+export const activitiesStore = writable<Activity[]>();

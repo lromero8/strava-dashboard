@@ -1,32 +1,41 @@
 <script lang='ts'>
     import { onDestroy, onMount } from 'svelte';
     import { activitiesStore } from '../../stores/store';
-    import type { Activity } from '$lib/activity';
+    import type { Activity, ActivityType } from '$lib/activity';
     import Runs from '$lib/runs/+page.svelte';
     import Rides from '$lib/rides/+page.svelte';
     import Swims from '$lib/swims/+page.svelte';
 
 
-    let activities: Activity[];
-    let runs: Activity[]|undefined;
-    let rides: Activity[]|undefined;
-    let swims: Activity[]|undefined;
+    let activities: Activity[] = [];
+    let activitySelected: ActivityType;
+    let shownActivities: Activity[] = [];
     let unsubscribe: () => void = () => {};
 
 
     function loadActivities() {
         unsubscribe = activitiesStore.subscribe(storedActivities => {
-            const castedActivities = storedActivities as Activity[]|undefined;
-            if (castedActivities) {
-                activities = castedActivities;
-                console.log(activities);
-            }
+            activities = storedActivities;
+            console.log(activities);
         });
     }
 
-    const getRuns = () => runs = activities?.filter(a => a.type === 'Run');
-    const getRides = () => rides = activities?.filter(a => a.type === 'Ride');
-    const getSwims = () => swims = activities?.filter(a => a.type === 'Swim');
+    const chooseActivity = (activityType: ActivityType) => {
+        activitySelected = activityType;
+        switch (activityType) {
+            case 'Run':
+                shownActivities = activities?.filter(a => a.type === 'Run');
+                break;
+            case 'Ride':
+                shownActivities = activities?.filter(a => a.type === 'Ride' && a.commute === true);
+                break;
+            case 'Swim':
+                shownActivities = activities?.filter(a => a.type === 'Swim');
+                break;
+            default:
+                break;
+        }
+    }
 
     onMount(loadActivities);
 
@@ -38,19 +47,19 @@
 </script>
 
 <div>
-    <button on:click={getRuns}>Run</button>
-    <button on:click={getRides}>Bike</button>
-    <button on:click={getSwims}>Swim</button>
+    <button on:click={() => chooseActivity('Run')}>Run</button>
+    <button on:click={() => chooseActivity('Ride')}>Bike</button>
+    <button on:click={() => chooseActivity('Swim')}>Swim</button>
 </div>
 
-{#if runs?.length}
-    <Runs runs={runs} />
+{#if activitySelected === 'Run'}
+    <Runs runs={shownActivities} />
 {/if}
 
-{#if rides?.length}
-    <Rides rides={rides} />
+{#if activitySelected === 'Ride'}
+    <Rides rides={shownActivities} />
 {/if}
 
-{#if swims?.length}
-    <Swims swims={swims} />
+{#if activitySelected === 'Swim'}
+    <Swims swims={shownActivities} />
 {/if}

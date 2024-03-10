@@ -9,6 +9,8 @@ interface Map {
   resource_state: number;
 }
 
+export type ActivityType = 'Run'|'Ride'|'Swim';
+
 export interface Activity {
   resource_state: number,
   athlete: Athlete,
@@ -17,7 +19,7 @@ export interface Activity {
   moving_time: number,
   elapsed_time: number,
   total_elevation_gain: number,
-  type: string,
+  type: ActivityType,
   sport_type: string,
   workout_type: null,
   id: number,
