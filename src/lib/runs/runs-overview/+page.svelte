@@ -21,7 +21,7 @@
     const beersEarned = calculateTotalBeersEarned(caloriesBurned);
 
 </script>
-<h3>Overview</h3>
+<h3>Last week's overview</h3>
 <div>
     <p>Distance run: {distanceRun} kms</p>
     <p>Moving time: {formattedTime}</p>
