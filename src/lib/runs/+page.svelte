@@ -1,6 +1,7 @@
 <script lang='ts'>
     import type { Activity } from '$lib/activity';
     import Ring from '$lib/ring/+page.svelte';
+    import RunsOverview from '$lib/runs/runs-overview/+page.svelte';
 
     export let runs: Activity[]|undefined;
 
@@ -12,7 +13,7 @@
 </script>
 
 {#if runs?.length}
-    <p>Last run: {lastRun} km</p>
+    <RunsOverview runs={runs}/>
     <Ring activityProperty='Distance' activityValue={`${lastRun} km`}  percentageAchieved={100} />
 
 {/if}
