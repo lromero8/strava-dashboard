@@ -15,12 +15,31 @@
 
     const formatActivityDate = (date: Date|string) => new Intl.DateTimeFormat('en-US', options).format(new Date(date));
 
+    function formatTime(seconds: number) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+
+        let formattedTime = '';
+        if (hours > 0) {
+            formattedTime += hours + 'h ';
+        }
+        if (minutes > 0) {
+            formattedTime += minutes + 'm ';
+        }
+        formattedTime += remainingSeconds + 's';
+
+        return formattedTime;
+    }
+
     const formattedDate = formatActivityDate(run.start_date);
     const formattedDistance = `${(run.distance / 1000).toFixed(2)} km`
+    const formattedTime = formatTime(run.moving_time);
 
 </script>
 
 <span>{formattedDate}</span>
 <Ring activityProperty='Distance' activityValue={formattedDistance}  percentageAchieved={100} />
+<Ring activityProperty='Time' activityValue={formattedTime}  percentageAchieved={100} />
 
 <style lang='scss'></style>
