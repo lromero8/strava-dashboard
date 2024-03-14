@@ -16,10 +16,11 @@
     const formatActivityDate = (date: Date|string) => new Intl.DateTimeFormat('en-US', options).format(new Date(date));
 
     const formattedDate = formatActivityDate(run.start_date);
+    const formattedDistance = `${(run.distance / 1000).toFixed(2)} km`
 
 </script>
 
 <span>{formattedDate}</span>
-<Ring activityProperty='Distance' activityValue={`${run.distance} km`}  percentageAchieved={100} />
+<Ring activityProperty='Distance' activityValue={formattedDistance}  percentageAchieved={100} />
 
 <style lang='scss'></style>
