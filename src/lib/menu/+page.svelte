@@ -6,9 +6,18 @@
     import Rides from '$lib/rides/+page.svelte';
     import Swims from '$lib/swims/+page.svelte';
 
+    interface Menu {
+        activityType: ActivityType;
+        label: string;
+    }
 
     let activities: Activity[] = [];
-    let activitySelected: ActivityType;
+    let activitySelected: ActivityType = 'Run';
+    let menu: Menu[] = [
+        { activityType: 'Run', label: 'Runs' },
+        { activityType: 'Ride', label: 'Rides' },
+        { activityType: 'Swim', label: 'Swims' }
+    ];
     let shownActivities: Activity[] = [];
     let unsubscribe: () => void = () => {};
 
@@ -16,6 +25,7 @@
     function loadActivities() {
         unsubscribe = activitiesStore.subscribe(storedActivities => {
             activities = storedActivities;
+            chooseActivity(activitySelected);
             console.log(activities);
         });
     }
@@ -47,9 +57,9 @@
 </script>
 
 <div>
-    <button on:click={() => chooseActivity('Run')}>Run</button>
-    <button on:click={() => chooseActivity('Ride')}>Bike</button>
-    <button on:click={() => chooseActivity('Swim')}>Swim</button>
+    {#each menu as tab}
+        <button on:click={() => chooseActivity(tab.activityType)}>{tab.label}</button>
+    {/each }
 </div>
 
 {#if activitySelected === 'Run'}
