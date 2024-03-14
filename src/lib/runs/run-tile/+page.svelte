@@ -1,5 +1,5 @@
 <script lang='ts'>
-    import type { Activity } from '$lib/activity';
+    import { calculateTotalCaloriesBurned, type Activity, calculateTotalBeersEarned } from '$lib/activity';
     import Ring from '$lib/ring/+page.svelte';
 
     export let run: Activity;
@@ -35,11 +35,14 @@
     const formattedDate = formatActivityDate(run.start_date);
     const formattedDistance = `${(run.distance / 1000).toFixed(2)} km`
     const formattedTime = formatTime(run.moving_time);
+    const caloriesBurned = calculateTotalCaloriesBurned(run.moving_time);
+    const beersEarned = Math.round(calculateTotalBeersEarned(caloriesBurned)).toString();
 
 </script>
 
 <span>{formattedDate}</span>
 <Ring activityProperty='Distance' activityValue={formattedDistance}  percentageAchieved={100} />
 <Ring activityProperty='Time' activityValue={formattedTime}  percentageAchieved={100} />
+<Ring activityProperty='Beers earned' activityValue={beersEarned}  percentageAchieved={100} />
 
 <style lang='scss'></style>
