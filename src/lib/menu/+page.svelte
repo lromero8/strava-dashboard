@@ -5,6 +5,7 @@
     import Runs from '$lib/runs/+page.svelte';
     import Rides from '$lib/rides/+page.svelte';
     import Swims from '$lib/swims/+page.svelte';
+    import Icon from '$lib/icons/+page.svelte';
 
     interface Menu {
         activityType: ActivityType;
@@ -63,6 +64,7 @@
 </div>
 
 {#if activitySelected === 'Run'}
+    <Icon name={'AccountCircle'} />
     <Runs runs={shownActivities} />
 {/if}
 

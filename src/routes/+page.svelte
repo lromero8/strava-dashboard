@@ -8,6 +8,7 @@
 
     function setStore() {
         if (data.activities) {
+            console.log(data);
             activitiesStore.set(data.activities);
         }
     }
@@ -17,7 +18,7 @@
 
 </script>
 
-<h1>Welcome to FitFiesta 🎉</h1>
+<!-- <h1>Welcome to FitFiesta 🎉</h1> -->
 
 <Menu />
 
