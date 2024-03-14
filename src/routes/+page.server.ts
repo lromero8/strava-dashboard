@@ -44,7 +44,10 @@ export async function load() {
 
         const response = await fetch('https://www.strava.com/api/v3/athlete/activities?access_token=' + reAuthJson.access_token);
         const activities = await response.json();
-        return { activities };
+        
+        const clubResponse = await fetch('https://www.strava.com/api/v3/clubs/1227124/activities?access_token=' + reAuthJson.access_token);
+        const clubActivities = await clubResponse.json();
+        return { activities, clubActivities };
 
     } catch (error) {
         console.log(error);
