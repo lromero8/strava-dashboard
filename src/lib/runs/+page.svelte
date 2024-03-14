@@ -1,6 +1,7 @@
 <script lang='ts'>
     import type { Activity } from '$lib/activity';
-    import Ring from '$lib/ring/+page.svelte';
+    // import Ring from '$lib/ring/+page.svelte';
+    import RunTile from '$lib/runs/run-tile/+page.svelte';
     import RunsOverview from '$lib/runs/runs-overview/+page.svelte';
 
     export let runs: Activity[]|undefined;
@@ -14,6 +15,9 @@
 
 {#if runs?.length}
     <RunsOverview runs={runs}/>
-    <Ring activityProperty='Distance' activityValue={`${lastRun} km`}  percentageAchieved={100} />
+
+    {#each runs as run}
+        <RunTile run={run} />
+    {/each}
 
 {/if}
