@@ -116,6 +116,9 @@
               min-width: 6.9em;
               outline: 0;
               padding: 0.50em 3.5em;
+              @media screen and (max-width: 750px) {
+                padding: 0.3em;
+              }
             }
         }
 
