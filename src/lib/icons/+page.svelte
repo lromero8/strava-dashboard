@@ -1,15 +1,21 @@
 <script lang='ts'>
 
     import {
-        mdiAccountCircle
+        mdiRun,
+        mdiBike,
+        mdiSwim
     } from '@mdi/js';
 
     const ICONS = icons({
-        mdiAccountCircle
+        mdiRun,
+        mdiBike,
+        mdiSwim
     });
 
 
     export let name: string;
+    export let size: string;
+    export let color: string;
 
     const kind = name.replace(/-/g, '').toLowerCase();
     const data = ICONS[kind];
@@ -24,14 +30,8 @@
 
 </script>
 
-<svg class="mdi-icon" viewBox="0 0 24 24">
+<svg viewBox="0 0 24 24" width={size} height={size} color={color}>
     <path fill="currentColor" d="{data}"></path>
 </svg>
   
-<style lang='scss'>
-    .mdi-icon {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-    }
-</style>
+<style lang='scss'></style>
