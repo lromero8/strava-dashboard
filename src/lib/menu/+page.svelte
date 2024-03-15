@@ -62,7 +62,7 @@
         {#each menu as tab}
             <li class='{activitySelected === tab.activityType ? 'fifi-active-tab' : ''}'>
                 <button on:click={() => chooseActivity(tab.activityType)}>
-                    <Icon name={tab.iconName} size={'22'} color={'black'}/>
+                    <Icon name={tab.iconName} size={'22'} color={activitySelected === tab.activityType ? 'white' : '#F9725C'}/>
                 </button>
             </li>
         {/each }
@@ -121,7 +121,7 @@
 
         .fifi-active-tab {
             button {
-                background: #fff;
+                background: #F9725C;
                 color: #000;
             }
         }
