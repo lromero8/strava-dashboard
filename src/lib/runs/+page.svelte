@@ -1,6 +1,5 @@
 <script lang='ts'>
     import type { Activity } from '$lib/activity';
-    // import Ring from '$lib/ring/+page.svelte';
     import RunTile from '$lib/runs/run-tile/+page.svelte';
     import RunsOverview from '$lib/runs/runs-overview/+page.svelte';
 
