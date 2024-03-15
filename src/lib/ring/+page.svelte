@@ -13,7 +13,7 @@
 <div class="circle circle-big">
     <svg height="150" width="150" style="--stroke-dashoffset: {strokeDashoffset}">
       <circle cx="80" cy="74" r="64" class="line-shadow" stroke="#000000" stroke-width="10" fill="none"></circle>
-      <circle cx="80" cy="74" r="64" class="line line-1" stroke="#00DEA3" stroke-width="10" fill="none"></circle>
+      <circle cx="80" cy="74" r="64" class="line line-1" stroke="#F9725C" stroke-width="10" fill="none"></circle>
     </svg>
     
     <div class="info">
