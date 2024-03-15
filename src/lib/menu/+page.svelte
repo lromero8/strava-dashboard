@@ -9,15 +9,15 @@
 
     interface Menu {
         activityType: ActivityType;
-        label: string;
+        iconName: string;
     }
 
     let activities: Activity[] = [];
     let activitySelected: ActivityType = 'Run';
     let menu: Menu[] = [
-        { activityType: 'Run', label: 'Runs' },
-        { activityType: 'Ride', label: 'Rides' },
-        { activityType: 'Swim', label: 'Swims' }
+        { activityType: 'Run', iconName: 'Run' },
+        { activityType: 'Ride', iconName: 'Bike' },
+        { activityType: 'Swim', iconName: 'Swim' }
     ];
     let shownActivities: Activity[] = [];
     let unsubscribe: () => void = () => {};
@@ -57,14 +57,19 @@
 
 </script>
 
-<div>
-    {#each menu as tab}
-        <button on:click={() => chooseActivity(tab.activityType)}>{tab.label}</button>
-    {/each }
+<div class="menu-container">
+    <ul class="fifi-tabs">
+        {#each menu as tab}
+            <li class='{activitySelected === tab.activityType ? 'fifi-active-tab' : ''}'>
+                <button on:click={() => chooseActivity(tab.activityType)}>
+                    <Icon name={tab.iconName} size={'22'} color={'black'}/>
+                </button>
+            </li>
+        {/each }
+    </ul>
 </div>
 
 {#if activitySelected === 'Run'}
-    <Icon name={'AccountCircle'} />
     <Runs runs={shownActivities} />
 {/if}
 
@@ -75,3 +80,52 @@
 {#if activitySelected === 'Swim'}
     <Swims swims={shownActivities} />
 {/if}
+
+<style lang='scss'>
+    .menu-container {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    ul.fifi-tabs {
+        background: #e4e6ed;
+        border-radius: 20px;
+        display: inline-block;
+        list-style: none;
+        margin: 0 0.25em;
+        padding: 0.5em 0.5em;
+        white-space: nowrap;
+
+        li {
+            display: inline-block;
+
+            &::before {
+                content: '';
+            }
+
+
+            button {
+              background: transparent;
+              border: 0;
+              border-radius: 15px;
+              color: #b0bac9;
+              cursor: pointer;
+              font-weight: 700;
+              min-width: 6.9em;
+              outline: 0;
+              padding: 0.50em 3.5em;
+            }
+        }
+
+        .fifi-active-tab {
+            button {
+                background: #fff;
+                color: #000;
+            }
+        }
+
+
+    }
+</style>
