@@ -90,7 +90,7 @@ export const getLastWeekRuns = (runs: Activity[]) => {
 };
 
 export const calculateTotalDistance = (runs: Activity[]) => {
-    return runs.reduce((acc, curr) => acc + curr.distance, 0).toLocaleString();
+    return runs.reduce((acc, curr) => acc + curr.distance, 0) / 1000;
 };
 
 export const calculateTotalMovingTime = (runs: Activity[]) => {
