@@ -3,13 +3,19 @@
     import {
         mdiRun,
         mdiBike,
-        mdiSwim
+        mdiSwim,
+        mdiTimerOutline,
+        mdiSpeedometer,
+        mdiGlassMugVariant
     } from '@mdi/js';
 
     const ICONS = icons({
         mdiRun,
         mdiBike,
-        mdiSwim
+        mdiSwim,
+        mdiTimerOutline,
+        mdiSpeedometer,
+        mdiGlassMugVariant
     });
 
 
