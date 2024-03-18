@@ -87,6 +87,7 @@
         justify-content: center;
         flex-grow: 1;
         flex-shrink: 1;
+        margin-top: 4.5rem;
     }
 
     ul.fifi-tabs {
