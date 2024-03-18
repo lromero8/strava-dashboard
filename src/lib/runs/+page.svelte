@@ -5,11 +5,6 @@
 
     export let runs: Activity[]|undefined;
 
-    let lastRun = '';
-    if (runs?.length) {
-        lastRun = (runs[0].distance / 1000).toPrecision(3);
-    }
-
 </script>
 
 {#if runs?.length}
