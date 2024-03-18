@@ -57,7 +57,7 @@
 
 </script>
 
-<div class="menu-container">
+<div class="fifi-menu-container">
     <ul class="fifi-tabs">
         {#each menu as tab}
             <li class='{activitySelected === tab.activityType ? 'fifi-active-tab' : ''}'>
@@ -82,7 +82,7 @@
 {/if}
 
 <style lang='scss'>
-    .menu-container {
+    .fifi-menu-container {
         display: flex;
         justify-content: center;
         flex-grow: 1;
