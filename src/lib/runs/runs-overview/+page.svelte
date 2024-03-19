@@ -1,6 +1,6 @@
 <script lang='ts'>
     import {
-        getLastWeekRuns,
+        getThisWeekRuns,
         type Activity,
         calculateTotalAvgPace,
         calculateTotalBeersEarned,
@@ -13,17 +13,17 @@
 
     export let runs: Activity[];
 
-    const lastWeekRuns = getLastWeekRuns(runs);
-    const distanceRun = calculateTotalDistance(lastWeekRuns);
-    const movingTime = calculateTotalMovingTime(lastWeekRuns);
+    const thisWeekRuns = getThisWeekRuns(runs);
+    const distanceRun = calculateTotalDistance(thisWeekRuns);
+    const movingTime = calculateTotalMovingTime(thisWeekRuns);
     const formattedTime = formatTime(movingTime);
-    const avgPace = calculateTotalAvgPace(lastWeekRuns, movingTime);
+    const avgPace = calculateTotalAvgPace(thisWeekRuns, movingTime);
     const caloriesBurned = calculateTotalCaloriesBurned(movingTime);
     const beersEarned = calculateTotalBeersEarned(caloriesBurned);
 
 </script>
 <div class='fifi-card-overview'>
-    <span class='fifi-card-overview-title'>Last week's overview</span>
+    <span class='fifi-card-overview-title'>This week's overview</span>
     <div class="fifi-card-overview-body">
 
         <div class="fifi-card-col">

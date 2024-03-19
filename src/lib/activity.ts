@@ -69,9 +69,9 @@ const RUNNING_MET = 8; // Approx value for running
 const KOELSCH_CALORIES = 132; // 1 bottle of 330ml = 132cal and 1 glas of 200ml = 80cal
 
 
-const currentDate = new Date();
-const oneWeekAgo = new Date(currentDate);
-oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+const today = new Date();
+const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Sunday
+const lastDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6)); // Saturday
 
 export const formatTime = (seconds: number) =>  {
     const hours = Math.floor(seconds / 3600);
@@ -82,10 +82,10 @@ export const formatTime = (seconds: number) =>  {
 };
 const formatDate = (date: Date|string) => new Date(date);
 
-export const getLastWeekRuns = (runs: Activity[]) => {
+export const getThisWeekRuns = (runs: Activity[]) => {
     return runs.filter(run => {
         const startDate = formatDate(run.start_date);
-        return startDate >= oneWeekAgo && startDate <= currentDate;
+        return startDate >= firstDayOfWeek && startDate <= lastDayOfWeek;
     });
 };
 
