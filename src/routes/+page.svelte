@@ -22,7 +22,7 @@
 
 <Menu />
 
-<div>
+<!-- <div>
     <span>Ideas 💡</span>
     <ul>
     
@@ -69,5 +69,5 @@
             <li>Days left for event</li>
         </ul>
     </ul>
-</div>
+</div> -->
 
