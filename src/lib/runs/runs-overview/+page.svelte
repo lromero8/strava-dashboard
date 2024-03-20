@@ -1,19 +1,19 @@
 <script lang='ts'>
     import {
-        getThisWeekRuns,
+        getThisWeekActivities,
         calculateTotalAvgPace,
         calculateTotalBeersEarned,
         calculateTotalCaloriesBurned,
         calculateTotalDistance,
         calculateTotalMovingTime,
         formatTime
-    } from '$lib/runs/run-helper';
+    } from '$lib/shared/activities-helper';
     import Icon from '$lib/icons/+page.svelte';
     import type { Activity } from '$lib/activity';
 
     export let runs: Activity[];
 
-    const thisWeekRuns = getThisWeekRuns(runs);
+    const thisWeekRuns = getThisWeekActivities(runs);
     const distanceRun = calculateTotalDistance(thisWeekRuns);
     const movingTime = calculateTotalMovingTime(thisWeekRuns);
     const formattedTime = formatTime(movingTime);
