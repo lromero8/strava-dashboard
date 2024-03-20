@@ -1,5 +1,5 @@
 <script lang='ts'>
-    import { calculateTotalCaloriesBurned, calculateTotalBeersEarned } from '$lib/runs/run-helper';
+    import { calculateTotalCaloriesBurned, calculateTotalBeersEarned } from '$lib/shared/activities-helper';
     import Icon from '$lib/icons/+page.svelte';
     import type { Activity } from '$lib/activity';
 
