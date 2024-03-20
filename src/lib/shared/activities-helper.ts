@@ -3,6 +3,7 @@ import type { Activity } from "$lib/activity";
 const WEIGHT = 79;
 const RUNNING_MET = 8; // Approx value for running
 const KOELSCH_CALORIES = 132; // 1 bottle of 330ml = 132cal and 1 glas of 200ml = 80cal
+const CO2 = 0.00021743;
 
 const today = new Date();
 const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay())); // Sunday
@@ -43,3 +44,7 @@ export const calculateTotalCaloriesBurned = (movingTime: number) => {
 export const calculateTotalBeersEarned = (caloriesBurned: number) => {
     return caloriesBurned / KOELSCH_CALORIES;
 };
+
+export const calculateCO2Saved = (distance: number) => {
+    return (distance * 1000) * CO2;
+}

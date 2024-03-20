@@ -1,0 +1,101 @@
+<script lang='ts'>
+    import {
+        getThisWeekActivities,
+        calculateCO2Saved,
+        calculateTotalBeersEarned,
+        calculateTotalCaloriesBurned,
+        calculateTotalDistance,
+        calculateTotalMovingTime,
+        formatTime
+    } from '$lib/shared/activities-helper';
+    import Icon from '$lib/icons/+page.svelte';
+    import type { Activity } from '$lib/activity';
+
+    export let rides: Activity[];
+
+    const thisWeekRides = getThisWeekActivities(rides);
+    const distanceRidden = calculateTotalDistance(thisWeekRides);
+    const movingTime = calculateTotalMovingTime(thisWeekRides);
+    const formattedTime = formatTime(movingTime);
+    const co2Saved = calculateCO2Saved(distanceRidden);
+    const caloriesBurned = calculateTotalCaloriesBurned(movingTime);
+    const beersEarned = calculateTotalBeersEarned(caloriesBurned);
+
+</script>
+<div class='fifi-card-overview'>
+    <span class='fifi-card-overview-title'>This week's overview</span>
+    <div class="fifi-card-overview-body">
+
+        <div class="fifi-card-col">
+            <p class='fifi-body-item'>
+                <Icon name='Bike' size='22' color='white' />
+                <span>Distance ridden: {distanceRidden.toPrecision(3)} kms</span>
+            </p>
+            <p class='fifi-body-item'>
+                <Icon name='TimerOutline' size='22' color='white' />
+                <span>Moving time: {formattedTime}</span>
+            </p>
+        </div>
+
+        <div class="fifi-card-col">
+            <p class='fifi-body-item'>
+                <Icon name='MoleculeCo2' size='22' color='white' />
+                <span>Carbon saved: {co2Saved.toPrecision(3)} kg CO2</span>
+            </p>
+            <p class='fifi-body-item'>
+                <Icon name='GlassMugVariant' size='22' color='white' />
+                <span>Kölschs earned: {beersEarned.toPrecision(2)}</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style lang='scss'>
+    $bg-color: #F9725C;
+    div.fifi-card-overview {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #e4e6ed;
+        border-radius: 5px;
+        box-shadow: 0 5px 5px 0 rgba(69, 88, 127, 0.1);
+        margin: 30px auto;
+        width: 38rem; 
+        padding: 1em;
+        @media screen and (max-width: 750px) {
+            width: 20rem;
+        }
+
+        background-color: $bg-color;
+        color: #fff;
+        border: 2px solid transparent;
+        border-radius: 4px;
+    }
+    
+    span.fifi-card-overview-title {
+        font-size: 1.1rem;
+    }
+    
+    div.fifi-card-overview-body {
+        display: flex;
+        justify-content: space-around;
+        @media screen and (max-width: 750px) {
+            flex-direction: column;
+        }
+
+        margin-top: 15px;;
+    }
+
+    div.fifi-card-col {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    p.fifi-body-item {
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-left: 5px;
+        }
+    }
+</style>

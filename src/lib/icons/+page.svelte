@@ -8,7 +8,8 @@
         mdiSpeedometer,
         mdiGlassMugVariant,
         mdiFire,
-        mdiElevationRise
+        mdiElevationRise,
+        mdiMoleculeCo2
     } from '@mdi/js';
 
     const ICONS = icons({
@@ -19,7 +20,8 @@
         mdiSpeedometer,
         mdiGlassMugVariant,
         mdiFire,
-        mdiElevationRise
+        mdiElevationRise,
+        mdiMoleculeCo2
     });
 
 
