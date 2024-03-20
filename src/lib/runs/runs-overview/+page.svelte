@@ -1,15 +1,15 @@
 <script lang='ts'>
     import {
         getThisWeekRuns,
-        type Activity,
         calculateTotalAvgPace,
         calculateTotalBeersEarned,
         calculateTotalCaloriesBurned,
         calculateTotalDistance,
         calculateTotalMovingTime,
         formatTime
-    } from '$lib/activity';
+    } from '$lib/runs/run-helper';
     import Icon from '$lib/icons/+page.svelte';
+    import type { Activity } from '$lib/activity';
 
     export let runs: Activity[];
 
