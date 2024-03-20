@@ -6,7 +6,9 @@
         mdiSwim,
         mdiTimerOutline,
         mdiSpeedometer,
-        mdiGlassMugVariant
+        mdiGlassMugVariant,
+        mdiFire,
+        mdiElevationRise
     } from '@mdi/js';
 
     const ICONS = icons({
@@ -15,7 +17,9 @@
         mdiSwim,
         mdiTimerOutline,
         mdiSpeedometer,
-        mdiGlassMugVariant
+        mdiGlassMugVariant,
+        mdiFire,
+        mdiElevationRise
     });
 
 
