@@ -14,7 +14,7 @@
         hour12: true as const
     };
 
-    const fontColor = '#f9725c';
+    const iconColor = '#0090E3';
 
     const formatActivityDate = (date: Date|string) => new Intl.DateTimeFormat('en-US', options).format(new Date(date));
 
@@ -47,14 +47,14 @@
 
 <div class="fifi-card">
     <div class="fifi-card-header">
-        <span>{run.name}</span>
-        <span>{formattedDate}</span>
+        <span id="fifi-activity-name">{run.name}</span>
+        <span id="fifi-activity-date">{formattedDate}</span>
     </div>
 
     <div class="fifi-card-body">
         <div class="fifi-stat">
             <span>
-                <Icon name='Run' size='22' color={fontColor} />
+                <Icon name='Run' size='22' color={iconColor} />
                 <span>Distance: </span>
             </span>
             <span>{formattedDistance}</span>
@@ -62,7 +62,7 @@
 
         <div class="fifi-stat">
             <span>
-                <Icon name='TimerOutline' size='22' color={fontColor} />
+                <Icon name='TimerOutline' size='22' color={iconColor} />
                 <span>Time: </span>
             </span>
             <span>{formattedTime}</span>
@@ -70,7 +70,7 @@
 
         <div class="fifi-stat">
             <span>
-                <Icon name='Speedometer' size='22' color={fontColor} />
+                <Icon name='Speedometer' size='22' color={iconColor} />
                 <span>Pace: </span>
             </span>
             <span>{pace.toPrecision(3)} min/km</span>
@@ -78,7 +78,7 @@
 
         <div class="fifi-stat">
             <span>
-                <Icon name='ElevationRise' size='22' color={fontColor} />
+                <Icon name='ElevationRise' size='22' color={iconColor} />
                 <span>Elevation gained: </span>
             </span>
             <span>{elevationGain} m</span>
@@ -86,7 +86,7 @@
 
         <div class="fifi-stat">
             <span>
-                <Icon name='Fire' size='22' color={fontColor} />
+                <Icon name='Fire' size='22' color={iconColor} />
                 <span>Calories burned: </span>
             </span>
             <span>{caloriesBurned.toPrecision(3)}</span>
@@ -94,7 +94,7 @@
 
         <div class="fifi-stat">
             <span>
-                <Icon name='GlassMugVariant' size='22' color={fontColor} />
+                <Icon name='GlassMugVariant' size='22' color={iconColor} />
                 <span>Kölschs earned: </span>
             </span>
             <span>{beersEarned}</span>
@@ -104,9 +104,10 @@
 
 
 <style lang='scss'>
-    $bg-color: #fff;
-    $header-text-color: #f9725c;
+    $card-bg-color: #fff;
     $text-color: #000;
+    $activity-name-color: #0090E3;
+    $activity-field-color: #6c757d;
 
     div.fifi-card {
         display: flex;
@@ -121,8 +122,8 @@
             width: 20rem;
         }
 
-        background-color: $bg-color;
-        color: $header-text-color;
+        background-color: $card-bg-color;
+        color: $text-color;
         border: 2px solid transparent;
         border-radius: 4px;
     }
@@ -131,8 +132,16 @@
         display: flex;
         justify-content: space-between;
         
-        font-size: 0.9rem;
-        font-weight: bold;
+        #fifi-activity-name {
+            color: $activity-name-color;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        #fifi-activity-date {
+            color: $activity-field-color;
+            font-size: 0.8rem;
+        }
     }
 
     div.fifi-card-body {
@@ -149,6 +158,7 @@
 
         div.fifi-stat > span > span {
             margin: 0 10px;
+            color: $activity-field-color;
         }
         
         @media (max-width: 750px) {

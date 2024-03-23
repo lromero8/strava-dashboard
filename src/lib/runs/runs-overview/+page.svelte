@@ -51,7 +51,8 @@
 </div>
 
 <style lang='scss'>
-    $bg-color: #F9725C;
+    $card-bg-color: #0090E3;
+
     div.fifi-card-overview {
         display: flex;
         flex-direction: column;
@@ -65,7 +66,7 @@
             width: 20rem;
         }
 
-        background-color: $bg-color;
+        background-color: $card-bg-color;
         color: #fff;
         border: 2px solid transparent;
         border-radius: 4px;

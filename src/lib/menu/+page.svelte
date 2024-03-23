@@ -14,7 +14,7 @@
 
     let activities: Activity[] = [];
     let activitySelected: ActivityType = 'Run';
-    let menu: Menu[] = [
+    const menu: Menu[] = [
         { activityType: 'Run', iconName: 'Run' },
         { activityType: 'Ride', iconName: 'Bike' },
         { activityType: 'Swim', iconName: 'Swim' }
@@ -22,6 +22,7 @@
     let shownActivities: Activity[] = [];
     let unsubscribe: () => void = () => {};
 
+    const iconBgColor= '#0090E3';
 
     function loadActivities() {
         unsubscribe = activitiesStore.subscribe(storedActivities => {
@@ -62,7 +63,7 @@
         {#each menu as tab}
             <li class='{activitySelected === tab.activityType ? 'fifi-active-tab' : ''}'>
                 <button on:click={() => chooseActivity(tab.activityType)}>
-                    <Icon name={tab.iconName} size={'22'} color={activitySelected === tab.activityType ? 'white' : '#F9725C'}/>
+                    <Icon name={tab.iconName} size={'22'} color={activitySelected === tab.activityType ? 'white' : iconBgColor}/>
                 </button>
             </li>
         {/each }
@@ -82,6 +83,9 @@
 {/if}
 
 <style lang='scss'>
+    $tab-container-bg-color: #e4e6ed;
+    $tab-bg-color: #0090E3;
+
     .fifi-menu-container {
         display: flex;
         justify-content: center;
@@ -91,7 +95,7 @@
     }
 
     ul.fifi-tabs {
-        background: #e4e6ed;
+        background: $tab-container-bg-color;
         border-radius: 20px;
         display: inline-block;
         list-style: none;
@@ -111,7 +115,6 @@
               background: transparent;
               border: 0;
               border-radius: 15px;
-              color: #b0bac9;
               cursor: pointer;
               font-weight: 700;
               min-width: 6.9em;
@@ -125,7 +128,7 @@
 
         .fifi-active-tab {
             button {
-                background: #F9725C;
+                background: $tab-bg-color;
                 color: #000;
             }
         }
