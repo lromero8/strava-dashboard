@@ -9,7 +9,8 @@
         mdiGlassMugVariant,
         mdiFire,
         mdiElevationRise,
-        mdiMoleculeCo2
+        mdiMoleculeCo2,
+        mdiHeartPulse
     } from '@mdi/js';
 
     const ICONS = icons({
@@ -21,7 +22,8 @@
         mdiGlassMugVariant,
         mdiFire,
         mdiElevationRise,
-        mdiMoleculeCo2
+        mdiMoleculeCo2,
+        mdiHeartPulse
     });
 
 
