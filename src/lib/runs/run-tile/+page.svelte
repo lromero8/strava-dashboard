@@ -1,6 +1,7 @@
 <script lang='ts'>
-    import { calculateTotalCaloriesBurned, calculateTotalBeersEarned } from '$lib/shared/activities-helper';
+    import { calculateTotalCaloriesBurned } from '$lib/shared/activities-helper';
     import Icon from '$lib/icons/+page.svelte';
+    import TreatDropdown from '$lib/shared/treat-selector/+page.svelte';
     import type { Activity } from '$lib/activity';
 
     export let run: Activity;
@@ -41,8 +42,6 @@
     const pace = (run.moving_time / 60) / (run.distance / 1000);
     const elevationGain = run.total_elevation_gain;
     const caloriesBurned = calculateTotalCaloriesBurned(run.moving_time);
-    const beersEarned = Math.round(calculateTotalBeersEarned(caloriesBurned)).toString();
-
 </script>
 
 <div class="fifi-card">
@@ -93,11 +92,7 @@
         </div>
 
         <div class="fifi-stat">
-            <span>
-                <Icon name='GlassMugVariant' size='22' color={iconColor} />
-                <span>Kölschs earned: </span>
-            </span>
-            <span>{beersEarned}</span>
+            <TreatDropdown caloriesBurned={caloriesBurned} iconColor={iconColor} selectedTextColor='#6c757d' selectedValueTextColor='black' />
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 <script lang='ts'>
     import { calculateTotalCaloriesBurned, calculateTotalBeersEarned, calculateCO2Saved } from '$lib/shared/activities-helper';
     import Icon from '$lib/icons/+page.svelte';
+    import TreatDropdown from '$lib/shared/treat-selector/+page.svelte';
     import type { Activity } from '$lib/activity';
 
     export let ride: Activity;
@@ -41,7 +42,6 @@
     const co2Saved = calculateCO2Saved(ride.distance / 1000);
     const elevationGain = ride.total_elevation_gain;
     const caloriesBurned = calculateTotalCaloriesBurned(ride.moving_time);
-    const beersEarned = Math.round(calculateTotalBeersEarned(caloriesBurned)).toString();
 
 </script>
 
@@ -93,11 +93,7 @@
         </div>
 
         <div class="fifi-stat">
-            <span>
-                <Icon name='GlassMugVariant' size='22' color={iconColor} />
-                <span>Kölschs earned: </span>
-            </span>
-            <span>{beersEarned}</span>
+            <TreatDropdown caloriesBurned={caloriesBurned} iconColor={iconColor} selectedTextColor='#6c757d' selectedValueTextColor='black' />
         </div>
     </div>
 </div>

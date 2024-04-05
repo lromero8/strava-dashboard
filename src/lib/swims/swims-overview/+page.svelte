@@ -2,13 +2,13 @@
     import {
         getThisWeekActivities,
         calculateTotalAvgPace,
-        calculateTotalBeersEarned,
         calculateTotalCaloriesBurned,
         calculateTotalDistance,
         calculateTotalMovingTime,
         formatTime
     } from '$lib/shared/activities-helper';
     import Icon from '$lib/icons/+page.svelte';
+    import TreatDropdown from '$lib/shared/treat-selector/+page.svelte';
     import type { Activity } from '$lib/activity';
 
     export let swims: Activity[];
@@ -19,8 +19,6 @@
     const formattedTime = formatTime(movingTime);
     const avgPace = calculateTotalAvgPace(thisWeekSwims, movingTime);
     const caloriesBurned = calculateTotalCaloriesBurned(movingTime);
-    const beersEarned = calculateTotalBeersEarned(caloriesBurned);
-    console.log(swims);
 
 </script>
 <div class='fifi-card-overview'>
@@ -44,8 +42,7 @@
                 <span>Average pace: {avgPace.toPrecision(3)} min/km</span>
             </p>
             <p class='fifi-body-item'>
-                <Icon name='GlassMugVariant' size='22' color='white' />
-                <span>Kölschs earned: {beersEarned.toPrecision(2)}</span>
+                <TreatDropdown caloriesBurned={caloriesBurned} iconColor='white' selectedTextColor='white' selectedValueTextColor='white' />
             </p>
         </div>
     </div>

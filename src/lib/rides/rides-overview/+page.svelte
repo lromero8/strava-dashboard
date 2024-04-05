@@ -2,13 +2,13 @@
     import {
         getThisWeekActivities,
         calculateCO2Saved,
-        calculateTotalBeersEarned,
         calculateTotalCaloriesBurned,
         calculateTotalDistance,
         calculateTotalMovingTime,
         formatTime
     } from '$lib/shared/activities-helper';
     import Icon from '$lib/icons/+page.svelte';
+    import TreatDropdown from '$lib/shared/treat-selector/+page.svelte';
     import type { Activity } from '$lib/activity';
 
     export let rides: Activity[];
@@ -19,7 +19,6 @@
     const formattedTime = formatTime(movingTime);
     const co2Saved = calculateCO2Saved(distanceRidden);
     const caloriesBurned = calculateTotalCaloriesBurned(movingTime);
-    const beersEarned = calculateTotalBeersEarned(caloriesBurned);
 
 </script>
 <div class='fifi-card-overview'>
@@ -43,8 +42,7 @@
                 <span>Carbon saved: {co2Saved.toPrecision(3)} kg CO2</span>
             </p>
             <p class='fifi-body-item'>
-                <Icon name='GlassMugVariant' size='22' color='white' />
-                <span>Kölschs earned: {beersEarned.toPrecision(2)}</span>
+                <TreatDropdown caloriesBurned={caloriesBurned} iconColor='white' selectedTextColor='white' selectedValueTextColor='white' />
             </p>
         </div>
     </div>
