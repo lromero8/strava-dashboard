@@ -42,7 +42,7 @@
     ];
     
     let selectedTreatIndex = 0;
-    let treatsEarned = (caloriesBurned / treats[selectedTreatIndex].calories).toPrecision(2);
+    let treatsEarned = Math.round(caloriesBurned / treats[selectedTreatIndex].calories);
 
     let isOpen = false;
 
@@ -52,7 +52,7 @@
 
     function calculate(index: number) {
         selectedTreatIndex = index;
-        treatsEarned = (caloriesBurned / treats[selectedTreatIndex].calories).toPrecision(2);
+        treatsEarned = Math.round(caloriesBurned / treats[selectedTreatIndex].calories);
         toggleDropdown();
     }
 
