@@ -10,7 +10,11 @@
         mdiFire,
         mdiElevationRise,
         mdiMoleculeCo2,
-        mdiHeartPulse
+        mdiHeartPulse,
+        mdiGlassWine,
+        mdiGlassCocktail,
+        mdiCakeLayered,
+        mdiTaco
     } from '@mdi/js';
 
     const ICONS = icons({
@@ -23,7 +27,11 @@
         mdiFire,
         mdiElevationRise,
         mdiMoleculeCo2,
-        mdiHeartPulse
+        mdiHeartPulse,
+        mdiGlassWine,
+        mdiGlassCocktail,
+        mdiCakeLayered,
+        mdiTaco
     });
 
 
@@ -31,8 +39,14 @@
     export let size: string;
     export let color: string;
 
-    const kind = name.replace(/-/g, '').toLowerCase();
-    const data = ICONS[kind];
+    let data = '';
+        
+    $: {
+        const kind = name.replace(/-/g, '').toLowerCase();
+        if (ICONS[kind]) {
+            data = ICONS[kind];
+        }
+    }
 
     function icons(set: { [name: string]: string }) {
         const i: { [key: string]: string } = {};
