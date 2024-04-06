@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { selectedTreatIndexStore } from './store'; // Assuming the store file is named 'store.ts'
     import Icon from '$lib/icons/+page.svelte';
 
     interface Treat {
@@ -40,10 +41,8 @@
             icon: 'Taco'
         }
     ];
-    
-    let selectedTreatIndex = 0;
-    let treatsEarned = Math.round(caloriesBurned / treats[selectedTreatIndex].calories);
 
+    $: treatsEarned = Math.round(caloriesBurned / treats[$selectedTreatIndexStore].calories);
     let isOpen = false;
 
     function toggleDropdown() {
@@ -51,8 +50,7 @@
     }
 
     function calculate(index: number) {
-        selectedTreatIndex = index;
-        treatsEarned = Math.round(caloriesBurned / treats[selectedTreatIndex].calories);
+        selectedTreatIndexStore.set(index);
         toggleDropdown();
     }
 
@@ -78,8 +76,8 @@
         <!-- svelte-ignore a11y-missing-attribute -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <a on:click={toggleDropdown} style="--selected-option-text-color: {selectedTextColor}">
-            <Icon name={treats[selectedTreatIndex].icon} size='22' color={iconColor} />
-            <span>{treats[selectedTreatIndex].name}</span>
+            <Icon name={treats[$selectedTreatIndexStore].icon} size='22' color={iconColor} />
+            <span>{treats[$selectedTreatIndexStore].name}</span>
         </a>
         <div class="fifi-dropdown-content">
             {#each treats as treat, index}
