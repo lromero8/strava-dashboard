@@ -18,7 +18,6 @@
 
 </script>
 
-<!-- <h1>Welcome to FitFiesta 🎉</h1> -->
 
 <Menu />
 
