@@ -27,22 +27,22 @@
 
         <div class="fifi-card-col">
             <p class='fifi-body-item'>
-                <Icon name='Run' size='22' color='white' />
+                <Icon name='Run' size='22' color='#0090E3' />
                 <span>Distance run: {distanceRun.toPrecision(3)} kms</span>
             </p>
             <p class='fifi-body-item'>
-                <Icon name='TimerOutline' size='22' color='white' />
+                <Icon name='TimerOutline' size='22' color='#0090E3' />
                 <span>Moving time: {formattedTime}</span>
             </p>
         </div>
 
         <div class="fifi-card-col">
             <p class='fifi-body-item'>
-                <Icon name='Speedometer' size='22' color='white' />
+                <Icon name='Speedometer' size='22' color='#0090E3' />
                 <span>Average pace: {avgPace.toPrecision(3)} min/km</span>
             </p>
             <p class='fifi-body-item'>
-                <TreatDropdown caloriesBurned={caloriesBurned} iconColor='white' selectedTextColor='white' selectedValueTextColor='white' />
+                <TreatDropdown caloriesBurned={caloriesBurned} iconColor='#0090E3' selectedTextColor='white' selectedValueTextColor='white' />
             </p>
         </div>
     </div>
@@ -50,13 +50,13 @@
 
 <style lang='scss'>
     $card-bg-color: #0090E3;
+    $body-bg-color: #101010;
 
     div.fifi-card-overview {
         display: flex;
         flex-direction: column;
         border: 1px solid #e4e6ed;
         border-radius: 5px;
-        box-shadow: 0 5px 5px 0 rgba(69, 88, 127, 0.1);
         margin: 30px auto;
         width: 38rem; 
         padding: 1em;
@@ -64,7 +64,7 @@
             width: 20rem;
         }
 
-        background-color: $card-bg-color;
+        background-color: color-mix(in srgb, $card-bg-color 15%, $body-bg-color);
         color: #fff;
         border: 2px solid transparent;
         border-radius: 4px;
@@ -87,6 +87,7 @@
     div.fifi-card-col {
         display: flex;
         flex-direction: column;
+        font-size: 0.9rem;
     }
     
     p.fifi-body-item {

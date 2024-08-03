@@ -21,6 +21,7 @@
 
 <style lang='scss'>
     $primary-color: #0090E3;
+    $menu-bg-color: #252525;
 
     .fifi-toolbar {
         position: fixed;
@@ -32,8 +33,8 @@
         padding: 10px 20px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-        background-color: #fff;
-        color: #6c757d;
+        background-color: $menu-bg-color;
+        color: #fff;
         font-size: 0.9em;
         font-weight: 600;
     }
@@ -50,7 +51,7 @@
 
         .fifi-toolbar-item {
             margin: 0 10px;
-            border-bottom: 0.2em solid #fff;
+            border-bottom: 0.2em solid $menu-bg-color;
 
         }
         
@@ -64,7 +65,7 @@
 
         .fifi-toolbar-item a {
             text-decoration: none;
-            color: #6c757d;
+            color: #fff;
         }
     }
 

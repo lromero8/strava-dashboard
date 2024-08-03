@@ -92,17 +92,17 @@
         </div>
 
         <div class="fifi-stat">
-            <TreatDropdown caloriesBurned={caloriesBurned} iconColor={iconColor} selectedTextColor='#6c757d' selectedValueTextColor='black' />
+            <TreatDropdown caloriesBurned={caloriesBurned} iconColor={iconColor} selectedTextColor='white' selectedValueTextColor='white' />
         </div>
     </div>
 </div>
 
 
 <style lang='scss'>
-    $card-bg-color: #fff;
-    $text-color: #000;
+    $card-bg-color: #252525;
+    $text-color: #fff;
     $activity-name-color: #0090E3;
-    $activity-field-color: #6c757d;
+    $activity-field-color: #fff;
 
     div.fifi-card {
         display: flex;
@@ -145,6 +145,7 @@
         gap: 20px;
 
         margin: 30px 0;
+        font-size: 0.9rem;
 
         div.fifi-stat, div.fifi-stat > span {
             display: flex;
@@ -154,6 +155,7 @@
         div.fifi-stat > span > span {
             margin: 0 10px;
             color: $activity-field-color;
+            font-weight: 600;
         }
         
         @media (max-width: 750px) {

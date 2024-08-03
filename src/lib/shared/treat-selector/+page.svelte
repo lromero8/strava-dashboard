@@ -99,9 +99,9 @@
 <style lang="scss">
 
     $selected-option-text-color: var(--selected-option-text-color);
-    $dropdown-content-bg-color: white;
-    $dropdown-option-text-color: black;
-    $dropdown-option-hover-color: #f1f1f1;
+    $dropdown-content-bg-color: #252525;
+    $dropdown-option-text-color: white;
+    $dropdown-option-hover-color: #101010;
     $earned-text-color: var(--earned-text-color);
     $earned-value-text-color: var(--earned-value-text-color);
 

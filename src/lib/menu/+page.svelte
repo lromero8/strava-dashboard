@@ -83,7 +83,7 @@
 {/if}
 
 <style lang='scss'>
-    $tab-container-bg-color: #e4e6ed;
+    $tab-container-bg-color: #252525;
     $tab-bg-color: #0090E3;
 
     .fifi-menu-container {
