@@ -14,7 +14,8 @@
         mdiGlassWine,
         mdiGlassCocktail,
         mdiCakeLayered,
-        mdiTaco
+        mdiTaco,
+        mdiPlusCircle
     } from '@mdi/js';
 
     const ICONS = icons({
@@ -31,7 +32,8 @@
         mdiGlassWine,
         mdiGlassCocktail,
         mdiCakeLayered,
-        mdiTaco
+        mdiTaco,
+        mdiPlusCircle
     });
 
 
