@@ -9,7 +9,7 @@
     // 400px = 0%
     // 0px = 100%
     const strokeDashoffset = ((100 - percentageAchieved) / 100) * 400;
-    const ringStrokeColor = '#F9725C';
+    const ringStrokeColor = '#0090E3';
 
 </script>
 
@@ -20,7 +20,7 @@
     </svg>
     
     <div class="info">
-        <span class="info__top">{activityValue}</span>
+        <span class="info__top" style="color: white;">{activityValue}</span>
         <!-- <span class="info__bottom">{activityIcon}</span> -->
         <span class="info__icon">
             <Icon name={activityIcon} size='28' color='#A5A7A9' />

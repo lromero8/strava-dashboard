@@ -7,19 +7,27 @@
     import TreatTypeSelector from '$lib/shared/treat-selector/treat-type-selector/+page.svelte';
     import { treats, type Treat } from '$lib/shared/treat-selector/treat';
     import Ring from '$lib/ring/+page.svelte';
+    import { calculateTotalCaloriesBurned } from '$lib/shared/activities-helper';
     
 
     interface Goal {
         name: string;
         description: string;
         activityType: ActivityType;
-        treat: Treat|undefined;
+        treat: Treat;
         value: number;
+    }
+
+    interface GoalWithProgress extends Goal {
+        current: number;
+        toGo: number;
+        progress: number;
     }
 
     let activateNewGoal = false;
     let savedGoals: readonly Goal[]|undefined;
     let activities: readonly Activity[];
+    let goalsWithProgress: GoalWithProgress[]|undefined;
     let unsubscribe: () => void = () => {};
 
     const iconColor = '#0090E3';
@@ -41,6 +49,7 @@
         loadActivities();
         loadGoals();
         console.log(savedGoals);
+        console.log(goalsWithProgress);
     }
 
     function loadActivities() {
@@ -54,8 +63,7 @@
     const showNewGoalCard = (newValue: boolean) => activateNewGoal = newValue;
 
     function save() {
-        console.log(goal);
-        const goals = savedGoals? savedGoals.concat(goal) : [goal];
+        const goals = savedGoals ? savedGoals.concat(goal) : [goal];
         saveGoals(goals)
     }
 
@@ -73,6 +81,20 @@
             const saved = localStorage.getItem('fitFiesta.goals');
             if(saved) {
                 savedGoals = JSON.parse(saved) as Goal[];
+                goalsWithProgress = savedGoals.map(goal => {
+                    const caloriesNeeded = goal.value * goal.treat.calories;
+                    const caloriesBurned = activities
+                        .filter(a => a.type === goal.activityType)
+                        .reduce((acc, cur) => acc + calculateTotalCaloriesBurned(cur.moving_time), 0)
+                    const progress = Math.floor((caloriesBurned/caloriesNeeded) * 100);
+
+                    return {
+                        ...goal,
+                        current: Math.floor(caloriesBurned),
+                        toGo: Math.floor(caloriesNeeded - caloriesBurned),
+                        progress: progress > 100 ? 100 : progress
+                    };
+                })
             }
         }
         catch {
@@ -139,15 +161,15 @@
 
     {/if}
 
-    {#if savedGoals}
-        {#each savedGoals as goal}
+    {#if goalsWithProgress}
+        {#each goalsWithProgress as goal}
             <div class="fifi-goal-card">
                 <div class="fifi-card-header">
                     <div>
                         <Ring
-                            activityValue={'0'}
-                            activityIcon={goal.treat?.icon}
-                            percentageAchieved={50}
+                            activityValue={goal.value.toString()}
+                            activityIcon={goal.treat.icon}
+                            percentageAchieved={goal.progress}
                         />
                     </div>
                     <div>
