@@ -64,7 +64,9 @@
 
     function save() {
         const goals = savedGoals ? savedGoals.concat(goal) : [goal];
+        activateNewGoal = false;
         saveGoals(goals)
+        load();
     }
 
     function saveGoals(goals: Goal[]) {
@@ -81,25 +83,29 @@
             const saved = localStorage.getItem('fitFiesta.goals');
             if(saved) {
                 savedGoals = JSON.parse(saved) as Goal[];
-                goalsWithProgress = savedGoals.map(goal => {
-                    const caloriesNeeded = goal.value * goal.treat.calories;
-                    const caloriesBurned = activities
-                        .filter(a => a.type === goal.activityType)
-                        .reduce((acc, cur) => acc + calculateTotalCaloriesBurned(cur.moving_time), 0)
-                    const progress = Math.floor((caloriesBurned/caloriesNeeded) * 100);
-
-                    return {
-                        ...goal,
-                        current: Math.floor(caloriesBurned),
-                        toGo: Math.floor(caloriesNeeded - caloriesBurned),
-                        progress: progress > 100 ? 100 : progress
-                    };
-                })
+                calculateGoalsProgress();
             }
         }
         catch {
             return undefined;
         }
+    }
+
+    function calculateGoalsProgress() {
+        goalsWithProgress = savedGoals?.map(goal => {
+            const caloriesNeeded = goal.value * goal.treat.calories;
+            const caloriesBurned = activities
+                .filter(a => a.type === goal.activityType)
+                .reduce((acc, cur) => acc + calculateTotalCaloriesBurned(cur.moving_time), 0)
+            const progress = Math.floor((caloriesBurned/caloriesNeeded) * 100);
+
+            return {
+                ...goal,
+                current: Math.floor(caloriesBurned),
+                toGo: Math.floor(caloriesNeeded - caloriesBurned),
+                progress: progress > 100 ? 100 : progress
+            };
+        });
     }
 
 </script>
