@@ -116,10 +116,10 @@
         <h1>Goals</h1>
 
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div class="fifi-new-btn">
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <div on:click={() => showNewGoalCard(true)}>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div class="fifi-new-btn" on:click={() => showNewGoalCard(true)}>
+            <div>
                 <Icon name='Plus' size='22' color={iconColor} />
             </div>
             <span>New</span>
@@ -235,6 +235,10 @@
         width: 38rem;
 
         h1 { color: white; }
+
+        div.fifi-new-btn:hover {
+            cursor: pointer;
+        }
 
         @media (max-width: 750px) {
             margin: 0 auto;
