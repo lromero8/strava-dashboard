@@ -212,7 +212,7 @@
                             <strong>{goal.current} Cal</strong>
                         </div>
                         <div>
-                            <strong>{goal.toGo} Cal</strong>
+                            <strong>{goal.toGo > 0 ? goal.toGo : 0} Cal</strong>
                         </div>
                     </div>
                 </div>
