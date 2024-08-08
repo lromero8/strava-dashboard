@@ -15,8 +15,8 @@
 
 <div class="circle circle-big">
     <svg height="150" width="150" style="--stroke-dashoffset: {strokeDashoffset}">
-        <circle cx="80" cy="74" r="64" class="line-shadow" stroke="#000000" stroke-width="7" fill="none"></circle>
-        <circle cx="80" cy="74" r="64" class="line line-1" stroke={ringStrokeColor} stroke-width="7" fill="none"></circle>
+        <circle cx="80" cy="74" r="55" class="line-shadow" stroke="#000000" stroke-width="7" fill="none"></circle>
+        <circle cx="80" cy="74" r="55" class="line line-1" stroke={ringStrokeColor} stroke-width="7" fill="none"></circle>
     </svg>
     
     <div class="info">
@@ -61,7 +61,7 @@
     .circle-big {
         width: 150px;
         height: 150px;
-        margin-top: 15px;
+        // margin-top: 15px;
     }
     
     .info {
