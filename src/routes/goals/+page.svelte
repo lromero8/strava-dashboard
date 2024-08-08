@@ -157,9 +157,20 @@
                     </div>
                 </div>
 
-                <div>
-                    <button on:click={save}>Save</button>
-                    <button on:click={() => showNewGoalCard(false)}>Cancel</button>
+            </div>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="fifi-new-goal-btns">
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <!-- svelte-ignore a11y-no-static-element-interactions -->
+                <div class="fifi-new-goal-save" on:click={save}>
+                    <Icon name='Plus' size='22' color={iconColor} />
+                    <span>Save</span>
+                </div>
+                <!-- svelte-ignore a11y-no-static-element-interactions -->
+                <div class="fifi-new-goal-cancel" on:click={() => showNewGoalCard(false)}>
+                    <Icon name='Close' size='22' color={iconColor} />
+                    <span>Cancel</span>
                 </div>
             </div>
         </div>
@@ -292,6 +303,32 @@
                 border-radius: 5px;
                 color: white;
                 background-color: color-mix(in srgb, $primary-color 15%, $body-bg-color);
+            }
+        }
+
+        div.fifi-new-goal-btns {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            
+            @media screen and (max-width: 750px) {
+                justify-content: space-between;
+            }
+            
+            
+            div.fifi-new-goal-save, div.fifi-new-goal-cancel {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                margin-right: 1em;
+                span { margin-left: 0.5em; }
+
+                @media screen and (max-width: 750px) {
+                    margin: 0;
+                }
+
+                
             }
         }
     }
