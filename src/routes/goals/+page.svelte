@@ -337,19 +337,37 @@
         background-color: color-mix(in srgb, $primary-color 15%, $body-bg-color);
     }
 
-    div.fifi-goal-card > .fifi-card-header {
-        display: flex;
+    div.fifi-goal-card {
 
-        div.fifi-goal-item {
-            margin-bottom: 15px;
+        div.fifi-card-header {
+            display: flex;
+           
+            @media screen and (max-width: 750px) {
+                display: block;
+            }
+
+            div.fifi-goal-item {
+                margin-bottom: 15px;
+            }
         }
+
+        div.fifi-card-body {
+            
+            div.fifi-current-togo {
+                display: grid;
+                grid-template-columns: 0.15fr 0.15fr;
+                grid-template-rows: auto auto;
+                gap: 10px;
+
+                margin-top: 2em;
+
+                @media screen and (max-width: 750px) {
+                    grid-template-columns: 0.5fr 0.5fr;
+                }
+            }
+        }
+
     }
 
-    div.fifi-current-togo {
-        display: grid;
-        grid-template-columns: 0.15fr 0.15fr;
-        grid-template-rows: auto auto;
-        gap: 10px;
-    }
 
 </style>
