@@ -8,3 +8,9 @@ export interface Goal {
     treat: Treat;
     value: number;
 }
+
+export interface GoalWithProgress extends Goal {
+    current: number;
+    toGo: number;
+    progress: number;
+}
