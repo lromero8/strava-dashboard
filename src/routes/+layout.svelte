@@ -11,7 +11,7 @@
         </div>
         <div class="fifi-toolbar-item" class:fifi-item-selected={$page.url.pathname === '/'}><a href="/">Dashboard</a></div>
         <div class="fifi-toolbar-item" class:fifi-item-selected={$page.url.pathname === '/goals'}><a href="/goals">Goals</a></div>
-        <div class="fifi-toolbar-item" class:fifi-item-selected={$page.url.pathname === '/calendar'}><a href="/calendar">Heat Calendar</a></div>
+        <div class="fifi-toolbar-item" class:fifi-item-selected={$page.url.pathname === '/progress'}><a href="/progress">Progress</a></div>
     </div>
 </div>
 

@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@mdi/js": "^7.4.47"
+		"@mdi/js": "^7.4.47",
+		"chart.js": "^4.4.3"
 	}
 }
