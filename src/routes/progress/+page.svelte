@@ -94,7 +94,9 @@
         <span style="color: white;">Store: {$calendarActivitiesStore.length}</span>
     {/if}
 
-    <canvas bind:this={chartCanvas}></canvas>
+    <div class="fifi-chart-container">
+        <canvas bind:this={chartCanvas}></canvas>
+    </div>
 
 </div>
 
@@ -102,4 +104,23 @@
     .fifi-container {
         margin-top: 4.5rem;
     }
+
+    .fifi-chart-container {
+        width: 80vw;
+        height: 60vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+
+        @media screen and (max-width: 750px) {
+            width: 90vw;
+        }
+    }
+
+    canvas {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
 </style>
