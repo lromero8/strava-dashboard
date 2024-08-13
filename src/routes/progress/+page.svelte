@@ -1,42 +1,19 @@
 <script lang='ts'>
     import { calendarActivitiesStore } from '../../stores/store';
-    import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
     import { Chart, registerables } from 'chart.js';
     import { get } from 'svelte/store';
     import { aggregateData, type AggregationType } from './aggregate-data';
     import { createChart } from './create-chart';
+    import TimeSelector from './time-selector/+page.svelte';
     Chart.register(...registerables);
 
-
-    interface TimeOption {
-        label: string;
-        month: number;
-        aggregationType: AggregationType;
-    }
 
 	export let data;
 
     let chart: Chart|null;
     let activityType: 'Run'|'Ride'|'Swim' = 'Run';
 	let chartCanvas: HTMLCanvasElement|null;
-    let timeOptions: TimeOption[] = [
-        {
-            label: 'Current month',
-            month: new Date().getMonth(),
-            aggregationType: 'Daily'
-        },
-        {
-            label: 'Last three months',
-            month: new Date().getMonth() - 2,
-            aggregationType: 'Weekly'
-        },
-        {
-            label: 'Last six months',
-            month: new Date().getMonth() - 5,
-            aggregationType: 'Weekly'
-        }
-    ];
     let selectedAggregationType: AggregationType = 'Daily';
 
 
@@ -72,28 +49,21 @@
     });
 
 
-    function select(timeOption: TimeOption) {
-        selectedAggregationType = timeOption.aggregationType;
-        goto(`/progress?month=${timeOption.month}`);
+    function select(aggregationType: AggregationType) {
+        selectedAggregationType = aggregationType;
     }
 
 
 </script>
 
 <div class="fifi-container">
-    <h1 style="color: white;">Progress</h1>
 
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    {#each timeOptions as option}
-        <!-- <option on:select={() => goto(`/progress?month=${option.month}`)}>{option.label}</option> -->
-        <div style="color: white; cursor: pointer; margin-top: 100px;" on:click={() => select(option)}>{option.label}</div>
-    {/each}
-
-    {#if $calendarActivitiesStore}
-        <span style="color: white;">Store: {$calendarActivitiesStore.length}</span>
-    {/if}
-
+    <div class="fifi-header">
+        <h1>Progress</h1>
+    </div>
+    
+    <TimeSelector on:selected={(event) => select(event.detail.aggregationType)} />
+        
     <div class="fifi-chart-container">
         <canvas bind:this={chartCanvas}></canvas>
     </div>
@@ -101,26 +71,41 @@
 </div>
 
 <style lang='scss'>
-    .fifi-container {
+    div.fifi-container {
         margin-top: 4.5rem;
-    }
+        max-width: 940px;
+        margin-right: auto;
+        margin-left: auto;
 
-    .fifi-chart-container {
-        width: 80vw;
-        height: 60vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
 
-        @media screen and (max-width: 750px) {
-            width: 90vw;
+        div.fifi-header {
+            display: flex;
+            justify-content: space-between;
+            width: 38rem;
+
+            h1 { color: white; }
+
+            @media (max-width: 750px) {
+                margin: 0 auto;
+                width: 20rem;
+                padding: 0 1rem;
+            }
+
         }
-    }
-
-    canvas {
-        max-width: 100%;
-        max-height: 100%;
+    
+        .fifi-chart-container {
+            width: 70vw;
+            height: 60vh;
+    
+            @media screen and (max-width: 750px) {
+                width: 90vw;
+            }
+        }
+    
+        canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
     }
 
 </style>
