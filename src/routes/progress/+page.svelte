@@ -23,7 +23,7 @@
     }
 
     function updateChart() {
-        const calendarActivities = get(calendarActivitiesStore).filter(a => a.sport_type === activityType);
+        const calendarActivities = get(calendarActivitiesStore).filter(a => a.type === activityType);
         
         const trendData = aggregateData(calendarActivities, selectedAggregationType);
         const kmLabels = trendData.map(d => d.x);

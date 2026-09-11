@@ -1,35 +1,27 @@
+import { INTERVALS_API_KEY, INTERVALS_ATHLETE_ID } from '$env/static/private';
+
 export async function load() {
     try {
-        const headers = {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        };
+        // intervals.icu requires oldest/newest bounds; use a trailing year for the dashboard
+        const newest = new Date().toISOString().slice(0, 10);
+        const oldest = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0, 10);
 
+        const response = await fetch(
+            `https://intervals.icu/api/v1/athlete/${INTERVALS_ATHLETE_ID}/activities?oldest=${oldest}&newest=${newest}`,
+            { headers: { 'Authorization': 'Basic ' + btoa(`API_KEY:${INTERVALS_API_KEY}`) } }
+        );
 
-        const body = JSON.stringify({
-            client_id: import.meta.env.VITE_STRAVA_CLIENT_ID,
-            client_secret: import.meta.env.VITE_STRAVA_CLIENT_SECRET,
-            refresh_token: import.meta.env.VITE_STRAVA_REFRESH_TOKEN,
-            grant_type: 'refresh_token'
-        });
+        if (!response.ok) {
+            console.log('activities status:', response.status, await response.text());
+            return { activities: [] };
+        }
 
-        const reAuthorizeResponse = await fetch('https://www.strava.com/oauth/token', {
-            method: 'post',
-            headers: headers,
-            body: body
-        });
-
-        const reAuthJson = await reAuthorizeResponse.json();
-        console.log(reAuthJson);
-
-        const response = await fetch('https://www.strava.com/api/v3/athlete/activities?access_token=' + reAuthJson.access_token);
         const activities = await response.json();
-        
-        const clubResponse = await fetch('https://www.strava.com/api/v3/clubs/1227124/activities?access_token=' + reAuthJson.access_token);
-        const clubActivities = await clubResponse.json();
-        return { activities, clubActivities };
+        return { activities };
 
-    } catch (error) {
+    }
+    catch (error) {
         console.log(error);
+        return { activities: [] };
     }
 }

@@ -1,46 +1,35 @@
 import type { Activity } from '$lib/activity.js';
+import { INTERVALS_API_KEY, INTERVALS_ATHLETE_ID } from '$env/static/private';
 
 export async function load({ params, url }) {
     try {
-        const headers = {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        };
-
-
-        const body = JSON.stringify({
-            client_id: import.meta.env.VITE_STRAVA_CLIENT_ID,
-            client_secret: import.meta.env.VITE_STRAVA_CLIENT_SECRET,
-            refresh_token: import.meta.env.VITE_STRAVA_REFRESH_TOKEN,
-            grant_type: 'refresh_token'
-        });
-
-        const reAuthorizeResponse = await fetch('https://www.strava.com/oauth/token', {
-            method: 'post',
-            headers: headers,
-            body: body
-        });
-
-        const reAuthJson = await reAuthorizeResponse.json();
-        console.log(reAuthJson);
-
         const currentMonth = new Date().getMonth();
         const month = Number(url.searchParams.get('month')) || currentMonth;
-        const { firstDayTimestamp, lastDayTimestamp } = getTimeStamps(month);
-        const perPage = 200;
+        const { oldest, newest } = getDateRange(month);
 
-        const calendarResponse = await fetch(`https://www.strava.com/api/v3/athlete/activities?before${lastDayTimestamp}&after=${firstDayTimestamp}&per_page=${perPage}&access_token=` + reAuthJson.access_token);
+        const calendarResponse = await fetch(
+            `https://intervals.icu/api/v1/athlete/${INTERVALS_ATHLETE_ID}/activities?oldest=${oldest}&newest=${newest}`,
+            { headers: { 'Authorization': 'Basic ' + btoa(`API_KEY:${INTERVALS_API_KEY}`) } }
+        );
+
+        if (!calendarResponse.ok) {
+            console.log('calendar activities status:', calendarResponse.status, await calendarResponse.text());
+            return { calendarActivities: [] };
+        }
+
         const calendarActivities = await calendarResponse.json();
 
         return { calendarActivities };
 
-    } catch (error) {
+    }
+    catch (error) {
         console.log(error);
+        return { calendarActivities: [] };
     }
 }
 
 
-function getTimeStamps(monthIndex: number) {
+function getDateRange(monthIndex: number) {
 
     const currentYear = new Date().getUTCFullYear();
     const currentMonthIndex = new Date().getMonth();
@@ -48,9 +37,9 @@ function getTimeStamps(monthIndex: number) {
     const firstDayOfSelectedMonth = new Date(Date.UTC(currentYear, monthIndex, 1, 0, 0, 0));
     const lastDayOfCurrentMonth = new Date(Date.UTC(currentYear, currentMonthIndex, new Date().getDate(), 0, 0, 0));
 
-    const firstDayTimestamp = Math.floor(firstDayOfSelectedMonth.getTime() / 1000);
-    const lastDayTimestamp = Math.floor(lastDayOfCurrentMonth.getTime() / 1000);
+    const oldest = firstDayOfSelectedMonth.toISOString().slice(0, 10);
+    const newest = lastDayOfCurrentMonth.toISOString().slice(0, 10);
 
-    return { firstDayTimestamp, lastDayTimestamp };
+    return { oldest, newest };
     
 }
